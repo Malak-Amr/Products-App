@@ -1,0 +1,42 @@
+<div class="product-details" *ngIf="product">
+  <div class="product-image">
+    <img [src]="product.image" [alt]="product.name" />
+  </div>
+
+  <div class="product-info">
+    <h2>{{ product.name }}</h2>
+
+    <p class="price">{{ product.price | discount:product.discountPercentage }}</p>
+
+    <p class="stock" [ngClass]="product.inStock ? 'in-stock' : 'out-of-stock'">
+      {{ product.inStock ? 'In Stock ' : 'Out of Stock ' }}
+    </p>
+
+    <p class="rating"> Rating: {{ product.rating }} / 5</p>
+
+    <h4>More Information</h4>
+    <p class="desc">{{ product.description }}</p>
+
+    <div class="meta">
+      <p><strong>Category:</strong> {{ product.category }}</p>
+      <p><strong>Brand:</strong> {{ product.brand }}</p>
+    </div>
+
+    <div class="quantity-section">
+  <label>Quantity:</label>
+  <button (click)="decrease()">-</button>
+  <input type="number" [(ngModel)]="quantity" min="1" />
+  <button (click)="increase()">+</button>
+</div>
+
+
+    <p class="limited-stock">
+      Only {{ product.stock }} Items Left!<span>Don't miss it</span>
+    </p>
+
+    <div class="actions">
+      <button class="buy">Buy Now</button>
+      <button class="add">Add to Cart</button>
+    </div>
+  </div>
+</div>

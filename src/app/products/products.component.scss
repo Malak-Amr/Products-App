@@ -1,0 +1,108 @@
+.page-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; // توسيط أفقي
+  text-align: center;  // توسيط النص
+  max-width: 250px;
+  margin: auto; // لو محتاج توسيط الكارد نفسه داخل العمود
+  cursor: pointer;
+}
+
+.image-wrapper {
+  width: 100%;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .stock-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #f44336;
+
+    &.in-stock {
+      background-color: #4caf50;
+    }
+  }
+}
+
+.product-info {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; // توسيط زرار ونجوم وكل حاجة تحت بعض
+  text-align: center;
+
+  h3 {
+    font-size: 1rem;
+    margin: 6px 0;
+  }
+
+  .price {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #009688;
+    margin-bottom: 6px;
+  }
+
+  .rating {
+    margin-bottom: 6px;
+
+    .star {
+      font-size: 1rem;
+      color: #ccc;
+
+      &.filled {
+        color: #ffc107;
+      }
+    }
+  }
+
+  button {
+    background-color: #009688;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #00796b;
+    }
+  }
+}

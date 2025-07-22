@@ -1,0 +1,24 @@
+<h1 class="page-title">Welcome to our shooping website, start browsing...</h1>
+<div class="products-grid">
+  <div class="product-card" *ngFor="let product of products" (click)="goToDetails(product.id)">
+    <div class="image-wrapper">
+      <img [src]="product.image" alt="{{ product.name }}">
+      <div class="stock-badge" [ngClass]="product.inStock ? 'in-stock' : 'out-of-stock'">
+        {{ product.inStock ? 'In Stock' : 'Out of Stock' }}
+      </div>
+    </div>
+
+    <div class="product-info">
+      <h3>{{ product.name }}</h3>
+      <p class="price">{{ product.price | currency:'EGP' }}</p>
+
+      <div class="rating">
+        <ng-container *ngFor="let star of [1,2,3,4,5]">
+          <span class="star" [ngClass]="star <= product.rating ? 'filled' : ''">★</span>
+        </ng-container>
+      </div>
+
+      <button (click)="addToCart(product); $event.stopPropagation()">Add to cart</button>
+    </div>
+  </div>
+</div>
