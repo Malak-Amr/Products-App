@@ -6,34 +6,59 @@
   <div class="product-info">
     <h2>{{ product.name }}</h2>
 
-    <p class="price">{{ product.price | discount:product.discountPercentage }}</p>
+    <p class="short-desc">{{ product.shortDescription }}</p>
 
-    <p class="stock" [ngClass]="product.inStock ? 'in-stock' : 'out-of-stock'">
-      {{ product.inStock ? 'In Stock ' : 'Out of Stock ' }}
-    </p>
-
-    <p class="rating"> Rating: {{ product.rating }} / 5</p>
-
-    <h4>More Information</h4>
-    <p class="desc">{{ product.description }}</p>
-
-    <div class="meta">
-      <p><strong>Category:</strong> {{ product.category }}</p>
-      <p><strong>Brand:</strong> {{ product.brand }}</p>
+    <!-- ⭐ التقييم بنجوم -->
+    <div class="rating">
+      <ng-container *ngFor="let star of getStars(product.rating); let i = index">
+        <span [class.filled]="i < product.rating">&#9733;</span>
+      </ng-container>
+      <span class="rating-number">({{ product.rating }})</span>
     </div>
 
-    <div class="quantity-section">
-  <label>Quantity:</label>
-  <button (click)="decrease()">-</button>
-  <input type="number" [(ngModel)]="quantity" min="1" />
-  <button (click)="increase()">+</button>
+    <!-- ⬛ فاصل بعد التقييم -->
+    <hr class="divider" />
+
+    <!-- 💲 السعر بعد الخصم -->
+    <p class="price">{{ product.price | discount:product.discountPercentage }}</p>
+
+    <!-- ⬛ فاصل بعد السعر -->
+    <hr class="divider" />
+
+    <!-- ✅ حالة التوفر -->
+    <p class="stock" [ngClass]="product.inStock ? 'in-stock' : 'out-of-stock'">
+      {{ product.inStock ? 'In Stock' : 'Out of Stock' }}
+    </p>
+
+    <h4>More Information</h4>
+
+  <div class="meta-labels">
+  <span class="label">
+    <i class="icon"></i> {{ product.category }}
+  </span>
+  <span class="label">
+    <i class="icon"></i> {{ product.brand }}
+  </span>
 </div>
 
 
-    <p class="limited-stock">
-      Only {{ product.stock }} Items Left!<span>Don't miss it</span>
-    </p>
+    <!-- ⬛ فاصل بعد المربعات -->
+    <hr class="divider" />
 
+<div class="quantity-row">
+    <div class="quantity-section">
+      <button (click)="decrease()">-</button>
+      <input type="number" [(ngModel)]="quantity" min="1" />
+      <button (click)="increase()">+</button>
+    </div>
+
+  <p class="limited-stock">
+    Only {{ product.stock }} Items Left!
+    <span>Don't miss it</span>
+  </p>
+</div>
+
+    <!-- 🛒 الأزرار -->
     <div class="actions">
       <button class="buy">Buy Now</button>
       <button class="add">Add to Cart</button>

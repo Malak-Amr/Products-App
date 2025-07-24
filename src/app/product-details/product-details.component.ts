@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product, products } from '../app.config';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DiscountPipe } from '../discount-pipe/discount-pipe';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, FormsModule, DiscountPipe],
+  imports: [CommonModule, FormsModule, DiscountPipe],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
@@ -29,5 +29,10 @@ export class ProductDetailsComponent implements OnInit {
 
   decrease() {
     if (this.quantity > 1) this.quantity--;
+  }
+
+  // ✅ توليد مصفوفة 5 عناصر لعرض النجوم
+  getStars(rating: number): number[] {
+    return Array(5).fill(0);
   }
 }
